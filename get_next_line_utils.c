@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
+/*   By: misousa <misousa@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 21:18:41 by miguelsousa       #+#    #+#             */
-/*   Updated: 2025/11/20 21:37:59 by miguelsousa      ###   ########.fr       */
+/*   Updated: 2025/11/21 19:29:39 by misousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	char	ch;
 
@@ -39,7 +39,7 @@ size_t	ft_strlen(const char *s)
 }
 
 
-char *ft_strjoin(const char *s1, const char *s2)
+char *ft_strjoin(char *s1, char *s2)
 {
     char *res;
     int i;
