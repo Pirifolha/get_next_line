@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
+/*   By: misousa <misousa@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 21:18:41 by miguelsousa       #+#    #+#             */
-/*   Updated: 2025/12/01 19:21:06 by miguelsousa      ###   ########.fr       */
+/*   Updated: 2025/12/02 17:48:29 by misousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,3 @@ char	*set_line(char *line)
 	return (new_line);
 }
 
-int main (void)
-{
-	char *str = "adddd";
-	char *str2 = "sweww";
-	char *str3;
-
-	str3 = ft_strjoin(str, str2);
-
-	printf("%s\n", str3);
-}
