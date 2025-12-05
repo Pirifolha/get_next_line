@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misousa <misousa@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 21:18:41 by miguelsousa       #+#    #+#             */
-/*   Updated: 2025/12/02 17:48:29 by misousa          ###   ########.fr       */
+/*   Updated: 2025/12/05 16:40:43 by miguelsousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ int	ft_strlen(const char *s)
 	int	i;
 
 	i = 0;
-	while (s[i] != '\0' || s[i] != '\n')
-	{
+	while (s[i] != '\0')
 		i++;
-	}
 	return (i);
 }
 
@@ -49,13 +47,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	res = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!res)
 		return (NULL);
-	while (s1[i])
+	while (s1[i] != '\0')
 		res[j++] = s1[i++];
 	i = 0;
-	while (s2[i])
-		res[j++] = s2[i];
+	while (s2[i] != '\0')
+		res[j++] = s2[i++];
 	res[j] = 0;
-	
 	return (res);
 }
 
@@ -65,7 +62,6 @@ char	*ft_strdup(char *s)
 	int		i;
 
 	i = 0;
-	printf("malloc success");
 	dest = malloc(ft_strlen(s) + 1);
 	if (dest == 0)
 		return (0);
@@ -78,26 +74,6 @@ char	*ft_strdup(char *s)
 	return (dest);
 }
 
-char	*fill_line(int fd, char *line, char *buffer)
-{
-	int	i;
-
-	while (1)
-	{
-		i = 0;
-		read(fd, buffer, BUFFER_SIZE);
-		if (line[i] == '\0')
-			line = ft_strdup(buffer);
-		else
-			line = ft_strjoin(line, buffer);
-		while (line[i] != '\0' || line[i] != '\n')
-		{
-			i++;
-		}
-		if (line[i] != '\0' || line[i] != '\n')
-			return (line);
-	}
-}
 char	*ft_substr(char *s, unsigned int start, unsigned int len)
 {
 	unsigned int	i;
@@ -112,7 +88,7 @@ char	*ft_substr(char *s, unsigned int start, unsigned int len)
 		len = 0;
 	if (len > slen - start)
 		len = slen - start;
-	result = malloc(len + 1);
+	result = malloc(len);
 	if (!result)
 		return (0);
 	while (i < len)
@@ -130,8 +106,38 @@ char	*set_line(char *line)
 	int		i;
 	char	*new_line;
 
-	i = ft_strlen(line);
+	i = 0;
+	while (line[i] != '\n')
+	{
+		i++;
+		if (line[i] == '\0')
+			return (line);
+	}
 	new_line = ft_substr(line, 0, i);
+	free(line);
 	return (new_line);
 }
 
+char	*clean_buffer(char *buffer)
+{
+	int	i;
+	int	j;
+	int	nl;
+
+	i = 0;
+	j = 0;
+	nl = 0;
+	while (buffer[i] != '\0')
+	{
+		if (nl == 1)
+		{
+			buffer[j] = buffer[i];
+			j++;
+		}
+		if (buffer[i] == '\n')
+			nl = 1;
+		buffer[i] = '\0';
+		i++;
+	}
+	return (buffer);
+}

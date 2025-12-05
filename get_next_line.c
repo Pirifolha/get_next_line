@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misousa <misousa@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:34:21 by misousa           #+#    #+#             */
-/*   Updated: 2025/12/02 17:49:25 by misousa          ###   ########.fr       */
+/*   Updated: 2025/12/05 16:29:33 by miguelsousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "stdio.h"
-#include <fcntl.h>
 
 char	*get_next_line(int fd)
 {
@@ -20,25 +18,37 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			n_bytes;
 
-	
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	buffer[BUFFER_SIZE] = '\0';
 	n_bytes = 1;
-	while(fd > 0)
+	while (n_bytes > 0)
 	{
-
+		n_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (line == NULL)
+			line = ft_strdup(buffer);
+		else
+			line = ft_strjoin(line, buffer);
+		if (ft_strchr(line, '\n') != 0)
+			break ;
+		line = set_line(line);
 	}
-	return (0);
+	clean_buffer(buffer);
+	return (line);
 }
 
 int	main(void)
 {
 	int fd;
 	char *line;
+	int i = 0;
 	fd = open("aa.txt", O_RDONLY);
 
-	line = get_next_line(fd);
-	printf("%s\n", line);
-	free(line);
+	while (i < 3)
+	{
+		line = get_next_line(fd);
+		printf("%s\n", line);
+		i++;
+	}
 }
