@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
+/*   By: misousa <misousa@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:34:21 by misousa           #+#    #+#             */
-/*   Updated: 2025/12/05 16:29:33 by miguelsousa      ###   ########.fr       */
+/*   Updated: 2025/12/05 16:48:41 by misousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@ char	*get_next_line(int fd)
 			line = ft_strdup(buffer);
 		else
 			line = ft_strjoin(line, buffer);
+		
 		if (ft_strchr(line, '\n') != 0)
+		{
+			line = set_line(line);
+			clean_buffer(buffer);
 			break ;
-		line = set_line(line);
+		}
 	}
-	clean_buffer(buffer);
 	return (line);
 }
 
