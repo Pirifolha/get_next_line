@@ -6,7 +6,7 @@
 /*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:33:04 by misousa           #+#    #+#             */
-/*   Updated: 2025/12/09 12:53:23 by miguelsousa      ###   ########.fr       */
+/*   Updated: 2025/12/09 20:06:27 by miguelsousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@
 # include <unistd.h>
 
 char	*get_next_line(int fd);
-char	*ft_strchr(char *s, int c);
 int		ft_strlen(const char *s);
-char	*ft_substr(char *s, unsigned int start, unsigned int len);
-char	*set_line(char *line);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(char *s);
-char	*clean_buffer(char *buffer);
+int		has_nl_and_clean(char *buffer);
 
 #endif
