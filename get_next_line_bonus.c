@@ -6,7 +6,7 @@
 /*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 20:46:44 by miguelsousa       #+#    #+#             */
-/*   Updated: 2025/12/09 20:51:30 by miguelsousa      ###   ########.fr       */
+/*   Updated: 2025/12/09 20:52:00 by miguelsousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-int	main(void)
+/* int	main(void)
 {
 	int fd;
 	char *line;
@@ -52,4 +52,4 @@ int	main(void)
 		printf("%s", line);
 		i++;
 	}
-}
+} */
