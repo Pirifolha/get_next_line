@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: misousa <misousa@student.42lisboa.com>     +#+  +:+       +#+        */
+/*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/20 18:34:21 by misousa           #+#    #+#             */
-/*   Updated: 2025/12/05 16:48:41 by misousa          ###   ########.fr       */
+/*   Created: 2025/12/06 15:54:48 by miguelsousa       #+#    #+#             */
+/*   Updated: 2025/12/09 12:56:02 by miguelsousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static int	has_newline(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	*set_line(char *line)
+{
+	int		i;
+	char	*new_line;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+		i++;
+	if (line[i] == '\n')
+		i++;
+	new_line = ft_substr(line, 0, i);
+	free(line);
+	return (new_line);
+}
 
 char	*get_next_line(int fd)
 {
@@ -18,40 +47,41 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			n_bytes;
 
-	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer[BUFFER_SIZE] = '\0';
-	n_bytes = 1;
-	while (n_bytes > 0)
+	line = NULL;
+	while (1)
 	{
-		n_bytes = read(fd, buffer, BUFFER_SIZE);
-		if (line == NULL)
-			line = ft_strdup(buffer);
-		else
-			line = ft_strjoin(line, buffer);
-		
-		if (ft_strchr(line, '\n') != 0)
+		if (buffer[0] == '\0')
 		{
-			line = set_line(line);
-			clean_buffer(buffer);
-			break ;
+			n_bytes = read(fd, buffer, BUFFER_SIZE);
+			if (n_bytes < 0)
+				return (buffer[0] = '\0', free(line), NULL);
+			if (n_bytes == 0)
+				return (line);
+			buffer[n_bytes] = '\0';
 		}
+		line = ft_strjoin(line, buffer);
+		if (!line)
+			return (NULL);
+		if (has_newline(line))
+			return (line = set_line(line), clean_buffer(buffer), line);
+		buffer[0] = '\0';
 	}
-	return (line);
 }
-
-int	main(void)
+/* int	main(void)
 {
 	int fd;
 	char *line;
-	int i = 0;
-	fd = open("aa.txt", O_RDONLY);
+	int i;
 
-	while (i < 3)
+	fd = open("aa.txt", O_RDONLY);
+	i = 0;
+
+	while (i < 6)
 	{
 		line = get_next_line(fd);
-		printf("%s\n", line);
+		printf("%s", line);
 		i++;
 	}
-}
+} */
