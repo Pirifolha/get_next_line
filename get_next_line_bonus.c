@@ -6,11 +6,11 @@
 /*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 20:46:44 by miguelsousa       #+#    #+#             */
-/*   Updated: 2025/12/09 20:52:00 by miguelsousa      ###   ########.fr       */
+/*   Updated: 2025/12/09 20:55:39 by miguelsousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
