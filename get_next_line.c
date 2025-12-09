@@ -6,7 +6,7 @@
 /*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 15:54:48 by miguelsousa       #+#    #+#             */
-/*   Updated: 2025/12/09 20:18:46 by miguelsousa      ###   ########.fr       */
+/*   Updated: 2025/12/09 20:22:03 by miguelsousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ char	*get_next_line(int fd)
 				break ;
 		}
 		line = ft_strjoin(line, buffer);
-		if (has_nl_and_clean(buffer))
-			break ;
+		if (has_nl_and_clean(buffer) == 1)
+			return (line);
 	}
 	return (line);
 }

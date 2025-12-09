@@ -6,7 +6,7 @@
 /*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 15:55:06 by miguelsousa       #+#    #+#             */
-/*   Updated: 2025/12/09 20:19:22 by miguelsousa      ###   ########.fr       */
+/*   Updated: 2025/12/09 20:21:43 by miguelsousa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ char	*ft_strjoin(char *s1, char *s2)
 			break ;
 		j++;
 	}
-	free(s1);
 	res[i] = '\0';
+	free(s1);
 	return (res);
 }
 
@@ -67,10 +67,7 @@ int	has_nl_and_clean(char *buffer)
 	while (buffer[i])
 	{
 		if (nl == 1)
-		{
-			buffer[j] = buffer[i];
-			j++;
-		}
+			buffer[j++] = buffer[i];
 		if (buffer[i] == '\n')
 			nl = 1;
 		buffer[i] = '\0';
