@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miguelsousa <miguelsousa@student.42.fr>    +#+  +:+       +#+        */
+/*   By: misousa <misousa@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 20:46:40 by miguelsousa       #+#    #+#             */
-/*   Updated: 2025/12/09 20:47:33 by miguelsousa      ###   ########.fr       */
+/*   Updated: 2025/12/10 15:52:08 by misousa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
